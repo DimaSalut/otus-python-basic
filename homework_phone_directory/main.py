@@ -3,8 +3,6 @@ path = os.path.join(os.path.dirname(__file__), 'contacts_100.json')
 id_number = 1
 
 
-
-
 def open_file():
     if os.path.exists(path):
         with open(path, 'r', encoding='utf-8') as json_file:
@@ -30,7 +28,7 @@ def find_contact():
     if found_user:
         show_contacts(found_user)
     else:
-        print('Пользователь не найден')
+        print('User was not found')
     return found_user
 
 
@@ -50,10 +48,9 @@ def save_file(saved_file):
 
 def assign_user_id():
     global id_number
-    id_key = 'id'
     data = open_file()
     for i in data:
-        i[id_key] = id_number
+        i['id'] = id_number
         id_number += 1
     save_file(data)
 
@@ -106,7 +103,6 @@ def process_file():
                 if dictionary['id'] == contact_id:
                     data[index] = contact_to_change
                     print('Contact was changed')
-                    break
             save_file(data)
         elif user_choice == '5':
             data = open_file()
