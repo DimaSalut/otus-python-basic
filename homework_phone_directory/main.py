@@ -32,6 +32,7 @@ def find_contact():
     return found_user
 
 
+
 def find_contact_by_id(contact_id):
     data = open_file()
     for i in data:
