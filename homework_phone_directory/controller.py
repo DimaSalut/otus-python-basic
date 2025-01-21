@@ -14,11 +14,12 @@ class Controller:
                               '6. Сохранить файл\n'
                               '7. Выход\n')
             self.view.process_command(menu_item)
-    @staticmethod
-    def get_contact_data():
+
+
+    def get_contact_data(self):
         name = input('Enter name: ')
-        second_name = input('Entet second name: ')
+        second_name = input('Enter second name: ')
         phone_number = input('Enter phone number: ')
         city = input('Enter city: ')
-        return name, second_name, phone_number, city
+        self.view.dict.create_contact(name, second_name, phone_number, city)
 

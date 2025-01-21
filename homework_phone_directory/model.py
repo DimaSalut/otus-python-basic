@@ -64,4 +64,4 @@ class DictionaryProcessor:
 
     def create_contact(self, name, second_name, phone_number, city):
         new_contact = Contact(name=name, second_name=second_name, phone_number=phone_number, city=city)
-        self.contacts.append(new_contact)
+        self.contacts.append(new_contact.to_dict())
