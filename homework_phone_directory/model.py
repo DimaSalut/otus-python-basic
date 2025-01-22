@@ -2,8 +2,24 @@ import json, os, controller
 
 path = os.path.join(os.path.dirname(__file__), 'contacts_100.json')
 
+
+class File:
+
+    @staticmethod
+    def open_file():
+        if os.path.exists:
+            with open(path, 'r', encoding='utf-8') as json_file:
+                data = json.load(json_file)
+                return data
+
+    @staticmethod
+    def save_file(saved_file):
+        with open(path, 'w', encoding='utf-8') as json_file:
+            json.dump(saved_file, json_file, ensure_ascii=False, indent = 4)
+
+
 class Contact:
-    base_id_number = 0
+    base_id_number = len(File.open_file())
     def __init__(self, name=None, second_name=None, phone_number=None, city=None):
         self.name = name
         self.second_name = second_name
@@ -45,7 +61,7 @@ class File:
     @staticmethod
     def save_file(saved_file):
         with open(path, 'w', encoding='utf-8') as json_file:
-            json.dump(saved_file, json_file, ensure_ascii=True, indent = 4)
+            json.dump(saved_file, json_file, ensure_ascii=False, indent = 4)
 
 
 class DictionaryProcessor:
@@ -62,6 +78,9 @@ class DictionaryProcessor:
                                   city=item['Город'])
             print(contact_obj, '\n')
 
-    def create_contact(self, name, second_name, phone_number, city):
-        new_contact = Contact(name=name, second_name=second_name, phone_number=phone_number, city=city)
+    def create_contact(self, contact_data):
+        new_contact = Contact(name=contact_data['name'], second_name=contact_data['second_name'],
+        phone_number=contact_data['phone_number'], city=contact_data['city'])
         self.contacts.append(new_contact.to_dict())
+        self.file.save_file(self.contacts)
+
