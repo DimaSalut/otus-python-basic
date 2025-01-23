@@ -49,21 +49,6 @@ class Contact:
                 f'City: {self.city}\nId: {self.id_number}')
 
 
-class File:
-
-    @staticmethod
-    def open_file():
-        if os.path.exists:
-            with open(path, 'r', encoding='utf-8') as json_file:
-                data = json.load(json_file)
-                return data
-
-    @staticmethod
-    def save_file(saved_file):
-        with open(path, 'w', encoding='utf-8') as json_file:
-            json.dump(saved_file, json_file, ensure_ascii=False, indent = 4)
-
-
 class DictionaryProcessor:
 
     def __init__(self):
@@ -84,3 +69,17 @@ class DictionaryProcessor:
         self.contacts.append(new_contact.to_dict())
         self.file.save_file(self.contacts)
 
+    def find_contact(self, contact_data):
+        contact_for_find = Contact(name=contact_data['name'], second_name='second_name')
+        for item in self.contacts:
+            if contact_for_find.name == item['Имя'] and contact_for_find.second_name == item['Фамилия']:
+                pass
+
+
+data = File.open_file()
+for item in data:
+    item['First name'] = item.pop('Имя')
+    item['Last name'] = item.pop('Фамилия')
+    item['City'] = item.pop('Город')
+
+File.save_file(data)

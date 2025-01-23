@@ -1,3 +1,6 @@
+from tkinter.font import names
+
+
 class View:
 
     def __init__(self, controller):
@@ -28,6 +31,14 @@ class View:
             'city': city
         }
 
+    @staticmethod
+    def contact_data_for_find():
+        name = input('Enter name: ')
+        second_name = input('Enter second name: ')
+        return {
+            'name': name,
+            'second_name': second_name
+        }
 
 
 
